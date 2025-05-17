@@ -30,10 +30,10 @@ export default function Login() {
     <div className="login-page">
       <div className="login-container">
         <form className="auth-form" onSubmit={handleLogin}>
-          <h2 className="logo">SAVEIDE</h2>
+          <h2 className="logo">MOTION DETECTED YARN</h2>
           <p className="welcome-text">
-            Welcome Back!<br />
-            Let’s start getting in to reading and writing
+            Welcome Bakosh!<br />
+            Mag motion detector na ta BAKS! 
           </p>
 
           {error && <p className="error">{error}</p>}

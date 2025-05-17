@@ -2,66 +2,79 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Auth.css";
-import ThemeToggle from "../components/ThemeToggle";
 
 export default function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     try {
-      const response = await axios.post("http://localhost:8000/api/register/", {
+      await axios.post("http://localhost:8000/api/register/", {
         username,
         password,
       });
-
-      const { access, refresh } = response.data;
-      localStorage.setItem("access_token", access);
-      localStorage.setItem("refresh_token", refresh);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
-      navigate("/login"); // or home
+      navigate("/login");
     } catch (err) {
-      const msg = err.response?.data?.error || "Something went wrong.";
-      setError(msg);
+      setError("Registration failed. Try a different username.");
     }
   };
 
   return (
-    <div className="auth-container">
-      <ThemeToggle />
-      <form className="auth-form" onSubmit={handleRegister}>
-        <h2>Create Account</h2>
-        <p>Let’s get started on your journey</p>
+    <div className="login-page">
+      <div className="login-container">
+        <form className="auth-form" onSubmit={handleRegister}>
+          <h2 className="logo">MOTION DETECTED YARN</h2>
+          <p className="welcome-text">
+            Create your account and start your journey!
+          </p>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p className="error">{error}</p>}
 
-        <input
-          type="text"
-          placeholder="Choose a username…"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Choose a password…"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <input
+            type="text"
+            placeholder="Input your email…"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Create a password…"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Confirm your password…"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
 
-        <button type="submit">Register</button>
+          <button type="submit" className="sign-in-btn">Register</button>
 
-        <div className="auth-bottom">
-          Already have an account?{" "}
-          <button className="link-button" onClick={() => navigate("/login")}>
-            Sign In
-          </button>
-        </div>
-      </form>
+          <div className="auth-bottom">
+            Already have an account?{" "}
+            <button
+              className="link-button"
+              onClick={() => navigate("/login")}
+            >
+              Login Now
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -137,6 +137,9 @@
   transition: background-color 0.3s ease;
 }
 
+.auth-form button:hover {
+  background-color: #4f46e5;
+}
 
 .auth-links {
   margin-top: 1rem;

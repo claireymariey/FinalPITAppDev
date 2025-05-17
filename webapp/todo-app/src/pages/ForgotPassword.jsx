@@ -12,17 +12,26 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="auth-container">
-      <form className="auth-form" onSubmit={handleReset}>
-        <h2>Reset Password</h2>
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Send Reset Link</button>
-        <div className="auth-links">
-          <button type="button" className="link-button" onClick={() => navigate('/login')}>
-            Back to Login
-          </button>
-        </div>
-      </form>
+    <div className="login-page">
+      <div className="login-container">
+        <form className="auth-form" onSubmit={handleReset}>
+          <h2 className="logo">Reset Password</h2>
+          
+          <input type="email" placeholder="Enter your email" required />
+
+          <button type="submit" className="sign-in-btn">Send Reset Link</button>
+
+          <div className="auth-links" style={{ justifyContent: 'center' }}>
+            <button
+              type="button"
+              className="link-button"
+              onClick={() => navigate('/login')}
+            >
+              Back to Login
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
