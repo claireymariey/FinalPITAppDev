@@ -4,68 +4,61 @@ import axios from "axios";
 import "./Auth.css";
 import ThemeToggle from "../components/ThemeToggle";
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/token/", {
+      const response = await axios.post("http://localhost:8000/api/register/", {
         username,
         password,
       });
+
       const { access, refresh } = response.data;
       localStorage.setItem("access_token", access);
       localStorage.setItem("refresh_token", refresh);
       axios.defaults.headers.common["Authorization"] = `Bearer ${access}`;
-      navigate("/dashboard"); // redirect after successful login
+      navigate("/login"); // or home
     } catch (err) {
-      setError("Invalid username or password");
+      const msg = err.response?.data?.error || "Something went wrong.";
+      setError(msg);
     }
   };
 
   return (
     <div className="auth-container">
       <ThemeToggle />
-      <form className="auth-form" onSubmit={handleLogin}>
-        <h2>SAVEIDE</h2>
-        <p>Welcome Back!<br />Let’s start getting in to reading and writing</p>
+      <form className="auth-form" onSubmit={handleRegister}>
+        <h2>Create Account</h2>
+        <p>Let’s get started on your journey</p>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
 
         <input
           type="text"
-          placeholder="Input your username…"
+          placeholder="Choose a username…"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder="Input your password…"
+          placeholder="Choose a password…"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        <div className="auth-links">
-          <label>
-            <input type="checkbox" /> Remember Me
-          </label>
-          <button type="button" className="link-button" onClick={() => navigate("/forgot-password")}>
-            Forgot Password?
-          </button>
-        </div>
-
-        <button type="submit">Sign In</button>
+        <button type="submit">Register</button>
 
         <div className="auth-bottom">
-          Don’t Have an Account?{" "}
-          <button className="link-button" onClick={() => navigate("/register")}>
-            Register Now
+          Already have an account?{" "}
+          <button className="link-button" onClick={() => navigate("/login")}>
+            Sign In
           </button>
         </div>
       </form>

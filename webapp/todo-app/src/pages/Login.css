@@ -1,40 +1,121 @@
 .login-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
-  }
-  
-  .login-form {
-    background-color: white;
-    padding: 2rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 300px;
-    text-align: center;
-  }
-  
-  .login-form h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .login-form input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  
-  .login-form button {
-    width: 100%;
-    padding: 0.6rem;
-    background-color: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
+}
+
+.login-form {
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 400px;
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 1rem;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 🔽 Added for Register & Forgot Password links */
+.login-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.link-button:hover {
+  color: #3730a3;
+}
+
+/* REGISTER CSS */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f0f0, #d9e4f5);
+}
+
+.auth-form {
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.auth-form h2 {
+  margin-bottom: 1rem;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.auth-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.link-button:hover {
+  color: #3730a3;
+}
