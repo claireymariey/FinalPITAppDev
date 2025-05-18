@@ -6,46 +6,42 @@ import "./Auth.css";
 export default function Register() {
   const navigate = useNavigate();
 
+  // State variables
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); // <-- Added email
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  // Handle form submission
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    // Validate matching passwords
+    // Basic client-side validation
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
 
-    // Debug: log what's being sent
-    console.log("Sending:", { username, email, password });
-
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/register/",
-        { username, email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("http://localhost:8000/api/register/", {
+        username,
+        email,
+        password,
+      });
+      
 
-      // Optional: Store JWT tokens
+      // Optional: Save token if you want auto-login
       // localStorage.setItem("access", response.data.access);
       // localStorage.setItem("refresh", response.data.refresh);
 
-      alert(response.data.message); // Success message
-      navigate("/login"); // Redirect to login page
+      // Navigate to login
+      alert(response.data.message); // Show success alert
+      navigate("/login");
     } catch (err) {
-      console.error("Registration error:", err);
+      console.error(err);
       setError(
-        err.response?.data?.error ||
-          "Registration failed. Try a different username or email."
+        err.response?.data?.error || "Registration failed. Try a different username or email."
       );
     }
   };
