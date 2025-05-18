@@ -53,19 +53,6 @@ export default function Login() {
             required
           />
 
-          <div className="auth-links">
-            <label className="remember-me">
-              <input type="checkbox" /> Remember Me
-            </label>
-            <button
-              type="button"
-              className="link-button"
-              onClick={() => navigate("/forgot-password")}
-            >
-              Forgot Password?
-            </button>
-          </div>
-
           <button type="submit" className="sign-in-btn">
             Sign In
           </button>
