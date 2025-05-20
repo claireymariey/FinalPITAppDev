@@ -46,14 +46,12 @@ def list_users(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def motion_event_post(request):
     serializer = MotionEventSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response({"message": "Received and saved", "data": serializer.data}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
