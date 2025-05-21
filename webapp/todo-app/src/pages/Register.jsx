@@ -24,7 +24,7 @@ export default function Register() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/register/", {
+      const response = await axios.post("https://finalpitappdev.onrender.com/api/register/", {
         username,
         email,
         password,
