@@ -4,6 +4,8 @@ import axios from "axios";
 import "./Dashboard.css";
 import MotionBarChart from "../components/MotionBarChart";
 import MotionTimelineChart from "../components/Timeline";
+import Timeline from "../components/Timeline";
+import MotionTimeline from "../components/Timeline";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -90,12 +92,12 @@ export default function Dashboard() {
          >
                Bar Chart
          </button>
-         <button
+         {/* <button
             onClick={() => chartType === "timeline" ? {} : setChartType("timeline")} 
             className="chart_btn"
          >
             Timeline
-         </button>
+         </button> */}
          <button
             onClick={() => chartType === "table" ? {} : setChartType("table")} 
             className="chart_btn"
@@ -107,7 +109,7 @@ export default function Dashboard() {
          {
             chartType === "bar-graph" 
                ? <MotionBarChart events={data}/> 
-                  : chartType === "timeline" ? <MotionTimelineChart motionTimestamps={data.filter((e) => e.status === "motion").map((e) => new Date(e.timestamp))} /> : (
+                  : chartType === "timeline" ? <MotionTimeline events={data.slice(-40).map((e) => ({...e, timestamp: new Date(e.timestamp)}))}/> : (
                      <table className="dashboard-table">
                        <thead>
                          <tr>
